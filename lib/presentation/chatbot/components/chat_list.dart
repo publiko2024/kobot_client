@@ -26,7 +26,7 @@ class ChatList extends StatelessWidget {
             horizontal: defaultPaddingWidth, vertical: getHeight(5)),
         itemCount: messages.length,
         itemBuilder: (BuildContext context, int index) {
-          return (messages[index].name == 'user')
+          return (messages[index].role == ChatRole.user)
               ? Padding(
                   padding: EdgeInsets.symmetric(vertical: getHeight(5)),
                   child: ChatBubble(message: messages[index].message),

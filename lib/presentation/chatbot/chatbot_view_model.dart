@@ -44,7 +44,7 @@ class ChatbotViewModel with ChangeNotifier {
     _focusNode.unfocus();
 
     ChatMessage question = ChatMessage(
-      name: 'user',
+      role: ChatRole.user,
       message: questionText,
     );
 
@@ -54,7 +54,7 @@ class ChatbotViewModel with ChangeNotifier {
 
     //일단 가짜 응답 삽입
     ChatMessage mockAnswer =
-        const ChatMessage(name: 'chatbot', message: ' ... ');
+        const ChatMessage(role: ChatRole.bot, message: ' ... ');
     _messages.insert(0, mockAnswer);
     notifyListeners();
 
