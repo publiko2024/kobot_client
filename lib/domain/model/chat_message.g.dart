@@ -8,12 +8,17 @@ part of 'chat_message.dart';
 
 _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChatMessageImpl(
-      name: json['name'] as String,
+      role: $enumDecode(_$ChatRoleEnumMap, json['role']),
       message: json['message'] as String,
     );
 
 Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'role': _$ChatRoleEnumMap[instance.role]!,
       'message': instance.message,
     };
+
+const _$ChatRoleEnumMap = {
+  ChatRole.bot: 'bot',
+  ChatRole.user: 'user',
+};

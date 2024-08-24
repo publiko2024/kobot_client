@@ -10,7 +10,7 @@ class ChatbotRepoImpl implements ChatbotRepo {
     final String answer =
         await _chatbotApi.sendMessage(message: question.message);
     final ChatMessage answerMessage =
-        ChatMessage(name: 'chatbot', message: answer);
+        ChatMessage(role: ChatRole.bot, message: answer);
 
     return answerMessage;
   }
