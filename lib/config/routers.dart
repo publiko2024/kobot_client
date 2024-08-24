@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kobot_client/data/api/chatbot/chatbot_api_mock.dart';
-import 'package:kobot_client/data/repository/chatbot_repo_impl.dart';
+import 'package:kobot_client/config/di_setup.dart';
 import 'package:kobot_client/presentation/chatbot/chatbot_screen.dart';
 import 'package:kobot_client/presentation/chatbot/chatbot_view_model.dart';
 import 'package:kobot_client/presentation/splash/splash_screen.dart';
@@ -16,7 +15,7 @@ class Routes {
           path: '/splash',
           builder: (BuildContext context, GoRouterState state) {
             return ChangeNotifierProvider(
-              create: (context) => SplashViewModel(),
+              create: (context) => getIt<SplashViewModel>(),
               child: const SplashScreen(),
             );
           }),
@@ -24,11 +23,7 @@ class Routes {
           path: '/chat',
           builder: (BuildContext context, GoRouterState state) {
             return ChangeNotifierProvider(
-              create: (context) => ChatbotViewModel(
-                ChatbotRepoImpl(
-                  ChatbotApiMock(),
-                ),
-              ),
+              create: (context) => getIt<ChatbotViewModel>(),
               child: const ChatbotScreen(),
             );
           }),
