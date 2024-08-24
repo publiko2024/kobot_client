@@ -8,8 +8,8 @@ class ChatbotViewModel with ChangeNotifier {
   late FlutterTts _flutterTts;
 
   ChatbotViewModel(this._repo) {
-    _flutterTts = FlutterTts();
     _initializeTtsSettings();
+    _init();
   }
 
   final TextEditingController _textController = TextEditingController();
@@ -30,10 +30,21 @@ class ChatbotViewModel with ChangeNotifier {
   bool _isSpeaking = false;
   bool get isSpeaking => _isSpeaking;
 
+  Future<void> _init() async {
+    await _loadMessages(); // 데이터베이스에서 기존 메시지 로드
+  }
+
   void _initializeTtsSettings() async {
+    _flutterTts = FlutterTts();
     await _flutterTts.setLanguage("ko-KR");
     await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.setPitch(1.0);
+  }
+
+  Future<void> _loadMessages() async {
+    final messages = await _repo.getAllChatMessages(); // 기존 메시지 로드
+    _messages.addAll(messages.reversed);
+    notifyListeners();
   }
 
   Future<void> sendMessage() async {
@@ -52,15 +63,22 @@ class ChatbotViewModel with ChangeNotifier {
     _isWaitingAnswer = true;
     notifyListeners();
 
-    //일단 가짜 응답 삽입
+    // 일단 가짜 응답 삽입
     ChatMessage mockAnswer =
         const ChatMessage(role: ChatRole.bot, message: ' ... ');
     _messages.insert(0, mockAnswer);
     notifyListeners();
 
+    // 데이터베이스에 새로운 메시지 저장
+    await _repo.insertChatMessage(question);
+
     ChatMessage chatbotAnswer =
         await _repo.createChatMessage(question: question);
     _messages[0] = chatbotAnswer; // 응답이 오면 진짜 응답으로 교체
+
+    // 데이터베이스에 응답 메시지 저장
+    await _repo.insertChatMessage(chatbotAnswer);
+
     _isWaitingAnswer = false;
     notifyListeners();
   }
