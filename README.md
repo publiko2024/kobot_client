@@ -1,16 +1,7 @@
-# kobot_client
+## KoBoT 이란?
 
-A new Flutter project.
+koBoT은 장애인을 대상으로 하여, 궁금한 점을 질문하면 이에 대한 답변을 제공하는 맞춤형 AI 기반 어플리케이션입니다. 이 앱은 사용자의 장애 유형과 개별적인 요구를 고려하여 정보를 제공하며, 보다 접근 가능한 디지털 환경을 조성하는 것을 목표로 합니다.
 
-## Getting Started
+## 서비스 미리보기
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![readme](https://github.com/user-attachments/assets/b51bac3d-b8f8-4b6a-a753-ddb48a1b8330)
