@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:kobot_client/data/api/chatbot/chatbot_api.dart';
-import 'package:kobot_client/data/api/chatbot/chatbot_api_mock.dart';
+import 'package:kobot_client/data/api/chatbot/chatbot_api_impl.dart';
 import 'package:kobot_client/data/database/chat_message/chat_message_dao.dart';
 import 'package:kobot_client/data/database/chat_message/chat_message_dao_impl.dart';
 import 'package:kobot_client/data/database/database_helper.dart';
@@ -20,7 +20,7 @@ Future<void> diSetup() async {
   getIt.registerSingleton<ChatMessageDao>(ChatMessageDaoImpl(db));
 
   // API 및 Repository 초기화 및 등록
-  getIt.registerSingleton<ChatbotApi>(ChatbotApiMock());
+  getIt.registerSingleton<ChatbotApi>(ChatbotApiImpl());
   getIt.registerSingleton<ChatbotRepo>(
     ChatbotRepoImpl(getIt<ChatbotApi>(), getIt<ChatMessageDao>()),
   );

@@ -12,7 +12,7 @@ class SplashViewModel extends ChangeNotifier {
   bool get isLoaded => _isLoaded;
 
   void _init() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     _isLoaded = true;
     notifyListeners();
   }

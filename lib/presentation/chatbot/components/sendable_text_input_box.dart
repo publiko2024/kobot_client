@@ -43,6 +43,8 @@ class SendableTextInputBox extends StatelessWidget {
               child: TextField(
                 focusNode: focusNode,
                 controller: textController,
+                onEditingComplete: send,
+                textInputAction: TextInputAction.send,
                 maxLines: 4,
                 minLines: 1,
                 decoration: InputDecoration(
