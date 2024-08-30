@@ -2,7 +2,7 @@ import 'package:kobot_client/data/api/chatbot/chatbot_api.dart';
 import 'package:http/http.dart' as http;
 
 class ChatbotApiImpl implements ChatbotApi{
-  final String _baseUrl = 'http://34.47.74.81:8080';
+  final String _baseUrl = 'http://34.64.124.216:8080';
   @override
   Future<String> sendMessage({required String message}) async {
     final url = Uri.parse('$_baseUrl/chat');
